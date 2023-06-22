@@ -1,4 +1,4 @@
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinLengthValidator
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -6,13 +6,13 @@ from django.db import models
 
 
 class Profile(models.Model):
-    username = models.CharField(max_length=15,
-                                validators=[
-                                    RegexValidator(
-                                        regex=r'^[a-zA-Z0-9_]+$',
-                                        message='Ensure this value contains only letters, numbers, and underscore.'
-                                                    )
+    username = models.CharField(max_length=15, blank= False, null=False,
+                                validators=[MinLengthValidator(2),
+                                            RegexValidator(
+                                            regex=r'^[a-zA-Z0-9_]+$',
+                                            message='Ensure this value contains only letters, numbers, and underscore.'
+                                                            )
                                             ]
                                 )
-    email = models.EmailField(blank=False)
-    age = models.SmallIntegerField(blank=True, validators=[MinValueValidator(0)])
+    email = models.EmailField(blank=False, null=False)
+    age = models.PositiveIntegerField(blank=True, null=True)
