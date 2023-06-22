@@ -17,11 +17,16 @@
     <header>
         <nav>
             <img src="/static/images/headphones.png" alt="headphones">
-            <a href="#">Home</a><ul></ul>
+            <a href="{% url 'homepage' %}">Home</a><ul></ul>
             <ul>
+
+
                 <!--Only for user with created profile-->
-                <li><a href="#">Create Album</a></li>
-                <li><a href="#">Profile</a></li>
+                {% if profile %}
+                <li><a href="{% url 'album-add' %}">Create Album</a></li>
+                <li><a href="{% url 'user-profile-details' %}">Profile</a></li>
+                {% endif %}
+
             </ul>
         </nav>
     </header>
@@ -30,10 +35,14 @@
 
 
     <!-- Main Content -->
-    {% block content %}
+    {% block without_profile %}
     {% endblock %}
 
+    {% block with_profile %}
+    {% endblock %}
 
+    {% block content %}
+    {% endblock %}
 
     <!-- Footer -->
     <footer>
