@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Profile(models.Model):
-    username = models.CharField(max_length=15, blank= False, null=False,
+    username = models.CharField(max_length=15, blank=False, null=False,
                                 validators=[MinLengthValidator(2),
                                             RegexValidator(
                                             regex=r'^[a-zA-Z0-9_]+$',
@@ -16,3 +16,4 @@ class Profile(models.Model):
                                 )
     email = models.EmailField(blank=False, null=False)
     age = models.PositiveIntegerField(blank=True, null=True)
+
