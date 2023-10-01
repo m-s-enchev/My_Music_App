@@ -16,4 +16,5 @@ class Profile(models.Model):
                                 )
     email = models.EmailField(blank=False, null=False)
     age = models.PositiveIntegerField(blank=True, null=True)
+    password = models.CharField(max_length=20)
 
