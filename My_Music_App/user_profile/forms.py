@@ -9,5 +9,6 @@ class ProfileModelForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email'}),
-            'age': forms.NumberInput(attrs={'placeholder': 'Age'})
+            'age': forms.NumberInput(attrs={'placeholder': 'Age'}),
+            'password': forms.TextInput(attrs={'placeholder': 'Choose password'})
         }
