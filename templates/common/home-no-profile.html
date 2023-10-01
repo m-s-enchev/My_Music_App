@@ -20,10 +20,10 @@
     <section id="registerPage">
         <form action="{% url 'homepage' %}" method ='post'>
             <fieldset>
-                <legend>Profile</legend>
+                <legend>Register a profile</legend>
                 <!-- Form for Registration -->
                 {% csrf_token %}
-                {{ add_form }}
+                {{ form }}
                 <!-- Button to Create Profile -->
                 <button type="submit" class="register">Enter</button>
             </fieldset>
