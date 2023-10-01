@@ -21,7 +21,7 @@ def homepage(request):
     context = {
         'profile': profile,
         'albums': albums,
-        'add_form': form
+        'form': form
     }
 
     if profile:
