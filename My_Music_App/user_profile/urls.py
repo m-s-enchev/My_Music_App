@@ -4,5 +4,6 @@ from My_Music_App.user_profile import views
 urlpatterns = [
     path('details/', views.user_profile_details, name='user-profile-details'),
     path('delete/', views.user_profile_delete, name='user-profile-delete'),
+    path('edit/', views.user_profile_edit, name='user-profile-edit'),
 
 ]
