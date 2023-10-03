@@ -32,7 +32,12 @@ def user_profile_edit(request):
     if request.method == 'GET':
         return render(request, template_name='user_profile/profile-edit.html', context=context)
 
-
+    elif request.method == 'POST':
+        print('method is post')
+        if form.is_valid():
+            form.save()
+            print("saved form")
+            return redirect('user-profile-details')
 
 
 
