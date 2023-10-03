@@ -13,7 +13,7 @@
         <div class="profileText">
             <fieldset>
             <!-- Profile Info -->
-            <form>
+            <form method="post">
                 {% csrf_token %}
                 <h1>Username: {{ form.username }}</h1>
                 <h1>Email: {{ form.email }}</h1>
