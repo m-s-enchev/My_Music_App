@@ -17,16 +17,16 @@
     <header>
         <nav>
             <img src="/static/images/headphones.png" alt="headphones">
-            <a href="{% url 'homepage' %}">Home</a><ul></ul>
+            <a href="{% url 'homepage' %}">Home</a>
+
+
             <ul>
-
-
                 <!--Only for user with created profile-->
                 {% if profile %}
+                <div class="search_field_homepage">{{ search_form }}</div>
                 <li><a href="{% url 'album-add' %}">Create Album</a></li>
                 <li><a href="{% url 'user-profile-details' %}">Profile</a></li>
                 {% endif %}
-
             </ul>
         </nav>
     </header>
