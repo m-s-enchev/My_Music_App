@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from My_Music_App.user_profile.forms import ProfileModelForm
+from My_Music_App.user_profile.forms import ProfileEditForm
 from My_Music_App.user_profile.models import Profile
 
 
@@ -24,21 +24,18 @@ def user_profile_delete(request):
 
 def user_profile_edit(request):
     profile = Profile.objects.first()
-    form = ProfileModelForm(instance=profile)
+    form = ProfileEditForm(instance=profile)
     context = {
         'profile': profile,
         'form': form,
     }
-    if request.method == 'GET':
-        return render(request, template_name='user_profile/profile-edit.html', context=context)
 
-    elif request.method == 'POST':
-        print('method is post')
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            print("saved form")
             return redirect('user-profile-details')
 
-
+    return render(request, template_name='user_profile/profile-edit.html', context=context)
 
 
