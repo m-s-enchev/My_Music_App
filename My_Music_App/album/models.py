@@ -11,14 +11,14 @@ class Album(models.Model):
     album_name = models.CharField(max_length=30, unique=True, blank=False, null=False)
     artist = models.CharField(max_length=30, blank=False, null=False)
     some_choices = (
-        ('1', "Pop Music"),
-        ('2', "Jazz Music"),
-        ('3', "R&B Music"),
-        ('4', "Rock Music"),
-        ('5', "Country Music"),
-        ('6', "Dance Music"),
-        ('7', "Hip Hop Music"),
-        ('8', "Other")
+        ("Pop Music", "Pop Music"),
+        ("Jazz Music", "Jazz Music"),
+        ("R&B Music", "R&B Music"),
+        ("Rock Music", "Rock Music"),
+        ("Country Music", "Country Music"),
+        ("Dance Music", "Dance Music"),
+        ("Hip Hop Music", "Hip Hop Music"),
+        ("Other", "Other")
     )
     genre = models.CharField(max_length=30, blank=False, null=False, choices=some_choices)
     description = models.TextField(blank=True, null=True)
