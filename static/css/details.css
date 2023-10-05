@@ -126,14 +126,43 @@
 
 .wrapper_edit .albumCover img, .profilePage img {
     border-radius: 12px 0 0 7px;
-    height: 85%;
+    height: 90%;
+    margin: 30px;
 }
 
-.wrapper_edit .actionBtn  {
+.edit-profile  {
     display: flex;
     text-align: center;
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 25em;
+}
+
+
+.edit-profile {
+	width: 80%;
+	cursor: pointer;
+	border: none;
+    border-radius: 10px;
+	display: inline;
+	align-items: center;
+	justify-content: center;
+	background-color: #1b2845;
+	background-image: linear-gradient(315deg, #45a29e 0%, #0d324d 74%);
+	background-size: 200% 100%;
+	background-position: left;
+	background-repeat: no-repeat;
+	transition: 500ms;
+    color: white;
+    font-family: "Lato", serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+.edit-profile:hover {
+	background-position: right;
 }
