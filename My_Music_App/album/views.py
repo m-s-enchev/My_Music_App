@@ -29,10 +29,10 @@ def album_add(request):
 
 
 def album_details(request, id):
-    # profile = Profile.objects.first()
+    profile = Profile.objects.first()
     album = Album.objects.get(id=id)
     context = {
-        # 'profile': profile,
+        'profile': profile,
         'album': album,
         'album_id': id
     }
