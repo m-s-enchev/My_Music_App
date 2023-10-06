@@ -23,7 +23,15 @@
             <ul>
                 <!--Only for user with created profile-->
                 {% if profile %}
-                <div class="search_field_homepage">{{ search_form }}</div>
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ search_form }}
+                        <input type="hidden" name="search_form" value="1">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
                 <li><a href="{% url 'album-add' %}">Create Album</a></li>
                 <li><a href="{% url 'user-profile-details' %}">Profile</a></li>
                 {% endif %}
