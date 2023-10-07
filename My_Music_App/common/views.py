@@ -1,4 +1,6 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from My_Music_App.album.models import Album
 from My_Music_App.common.forms import SearchForm
@@ -23,7 +25,9 @@ def homepage(request):
         elif 'search_form' in request.POST:
             search_form = SearchForm(request.POST)
             if search_form.is_valid():
-                return redirect('search_results')
+                search = search_form.cleaned_data['search']
+                url = reverse('search_results') + f'?search={search}'
+                return HttpResponseRedirect(url)
 
     context = {
         'profile': profile,
@@ -44,22 +48,13 @@ def search_results(request):
     profile = Profile.objects.first()
 
     if request.method == "GET":
-        print(request.GET)
-        search_form = SearchForm(request.POST)
-        if search_form.is_valid():
-            print("search form is valid")
-            search = search_form.cleaned_data['search']
-            results = Album.objects.filter(name__icontains=search)
-            print(results)
+        search_query = request.GET.get('search', '')
 
-            context = {
-                "profile": profile,
-                "search_form": search_form,
-                "results": results,
-            }
+        results = Album.objects.filter(album_name__icontains=search_query)
 
-            return render(request, template_name="common/search-results.html", context=context)
+        contex = {
+            'profile': profile,
+            'results': results,
+        }
 
-    print(request)
-    context = {"profile": profile}
-    return render(request, template_name="common/search-results.html", context=context)
+        return render(request, 'common/search-results.html', context=contex)
