@@ -15,7 +15,6 @@ def homepage(request):
     search_form = SearchForm()
 
     if request.method == 'POST':
-        print(request.POST)
         if 'profile_form' in request.POST:
             form = ProfileModelForm(request.POST)
             if form.is_valid():
@@ -24,7 +23,6 @@ def homepage(request):
         elif 'search_form' in request.POST:
             search_form = SearchForm(request.POST)
             if search_form.is_valid():
-                print("Success")
                 return redirect('search_results')
 
     context = {
@@ -44,7 +42,24 @@ def homepage(request):
 
 def search_results(request):
     profile = Profile.objects.first()
-    context = {
-        "profile":profile
-    }
+
+    if request.method == "GET":
+        print(request.GET)
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid():
+            print("search form is valid")
+            search = search_form.cleaned_data['search']
+            results = Album.objects.filter(name__icontains=search)
+            print(results)
+
+            context = {
+                "profile": profile,
+                "search_form": search_form,
+                "results": results,
+            }
+
+            return render(request, template_name="common/search-results.html", context=context)
+
+    print(request)
+    context = {"profile": profile}
     return render(request, template_name="common/search-results.html", context=context)
