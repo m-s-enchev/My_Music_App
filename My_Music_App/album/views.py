@@ -36,6 +36,7 @@ def album_details(request, id):
         'album': album,
         'album_id': id
     }
+
     return render(request, template_name='album/album-details.html', context=context)
 
 
