@@ -26,3 +26,14 @@ class Album(models.Model):
     price = models.FloatField(blank=False, null=False, validators=[MinValueValidator(0.0)])
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def songs_in_album(self):
+        id = self.songs_set.values_list('id', flat=True)
+        name = self.songs_set.values_list('name', flat=True)
+        concatenated_list = []
+        for i in range(len(id)):
+            element = f'{id[i]}. {name[i]}'
+            concatenated_list.append(element)
+        return concatenated_list
+
+
