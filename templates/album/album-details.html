@@ -21,6 +21,11 @@
                 <h4>Genre: {{ album.genre }}</h4>
                 <h4>Price: {{ album.price|floatformat:2 }}</h4>
                 <p>Description: {{ album.description }}</p>
+                <h3>Songs:</h3>
+                {% for song in album.songs_in_album %}
+                    <h4>{{ song }} </h4>
+                {% endfor %}
+
             </div>
 
             <div class="actionBtn">
