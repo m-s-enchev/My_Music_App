@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from My_Music_App.album.forms import AlbumModelForm, DeleteAlbumModelForm
 from My_Music_App.album.models import Album
+from My_Music_App.songs.forms import SongsForm
 from My_Music_App.user_profile.models import Profile
 
 
@@ -41,11 +42,12 @@ def album_details(request, id):
 
 
 def album_edit(request, id):
-    # profile = Profile.objects.first()
+    profile = Profile.objects.first()
     album = Album.objects.get(id=id)
     form = AlbumModelForm(instance=album)
+    songs_form = SongsForm()
     context = {
-        # 'profile': profile,
+        'profile': profile,
         'album': album,
         'form': form,
         "album_id": id
