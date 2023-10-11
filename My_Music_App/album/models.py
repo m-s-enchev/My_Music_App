@@ -27,7 +27,7 @@ class Album(models.Model):
 
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    def songs_in_album(self):
+    def names_of_songs_in_album(self):
         id = self.songs_set.values_list('id', flat=True)
         name = self.songs_set.values_list('name', flat=True)
         concatenated_list = []
@@ -35,5 +35,11 @@ class Album(models.Model):
             element = f'{id[i]}. {name[i]}'
             concatenated_list.append(element)
         return concatenated_list
+
+    def songs_in_album(self):
+        return self.songs_set.all()
+
+    def __str__(self):
+        return self.album_name
 
 
