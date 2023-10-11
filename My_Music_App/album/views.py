@@ -1,8 +1,10 @@
+from django.forms import modelformset_factory
 from django.shortcuts import render, redirect
 
 from My_Music_App.album.forms import AlbumModelForm, DeleteAlbumModelForm
 from My_Music_App.album.models import Album
 from My_Music_App.songs.forms import SongsForm
+from My_Music_App.songs.models import Songs
 from My_Music_App.user_profile.models import Profile
 
 
@@ -44,25 +46,30 @@ def album_details(request, id):
 def album_edit(request, id):
     profile = Profile.objects.first()
     album = Album.objects.get(id=id)
+    songs = album.songs_in_album()
     form = AlbumModelForm(instance=album)
-    songs_form = SongsForm()
+    SongsFormSet = modelformset_factory(Songs, form=SongsForm, extra=0, can_delete=True)
+    songs_formset = SongsFormSet(queryset=songs)
     context = {
         'profile': profile,
         'album': album,
         'form': form,
-        "album_id": id
+        "album_id": id,
+        'songs_formset': songs_formset,
     }
 
     if request.method == "POST":
         form = AlbumModelForm(request.POST, instance=album)
-        if form.is_valid():
+        songs_formset = SongsFormSet(request.POST, queryset=songs)
+        if form.is_valid() and songs_formset.is_valid():
             form.save()
+            songs_formset.save()
             return redirect("homepage")
 
     return render(request, template_name='album/edit-album.html', context=context)
 
 
-def album_delete(request,id):
+def album_delete(request, id):
     profile = Profile.objects.first()
     album = Album.objects.get(id=id)
     form = DeleteAlbumModelForm(instance=album)
