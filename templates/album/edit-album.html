@@ -12,15 +12,35 @@
 
                 <!-- Form for Editing Album -->
 
-        {% csrf_token %}
-        {{ form }}
+                {% csrf_token %}
+                {{ form }}
 
                 <!-- Button for Editing Album -->
                 <button class="edit-album" type="submit">Edit Album</button>
             </div>
         </fieldset>
     </form>
-</section
+</section>
+
+<section class="editPage">
+    <form action = "{% url 'album-edit' id=album.id %}" method = "post">
+        <fieldset>
+            <h2>Songs in the album</h2>
+            <div class="container">
+
+                <!-- Form for Editing Album -->
+
+                {% csrf_token %}
+                {% for song in songs_formset %}
+                {{ song.name }}{{ song.length }}
+                {% endfor %}
+
+                <!-- Button for Editing Album -->
+                <button class="edit-album" type="submit">Edit Album</button>
+            </div>
+        </fieldset>
+    </form>
+</section>
 
 
 {% endblock %}>
