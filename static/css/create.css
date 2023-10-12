@@ -72,7 +72,7 @@ textarea {
 	height: 50px;
 	cursor: pointer;
 	border: none;
-  border-radius: 10px;
+    border-radius: 10px;
 	display: inline;
 	align-items: center;
 	justify-content: center;
@@ -82,11 +82,11 @@ textarea {
 	background-position: left;
 	background-repeat: no-repeat;
 	transition: 500ms;
-  color: white;
-  font-family: "Lato", serif;
-  font-size: 20px;
-  margin-bottom: 5px;
-  margin-top: 20px;
+    color: white;
+    font-family: "Lato", serif;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-top: 20px;
 }
 
 .createPage, .editPage {
