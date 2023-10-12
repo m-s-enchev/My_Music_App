@@ -166,3 +166,9 @@
 .edit-profile:hover {
 	background-position: right;
 }
+
+
+.songs-formset-field{
+    display: inline-block;
+    margin-right: 10px;
+}
