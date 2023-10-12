@@ -4,7 +4,7 @@
 
 
 <!--Edit Page-->
-<section class="editPage">
+    <section class="editPage">
     <form action = "{% url 'album-edit' id=album.id %}" method = "post">
         <fieldset>
             <legend>Edit Album</legend>
@@ -14,16 +14,11 @@
 
                 {% csrf_token %}
                 {{ form }}
-
+                {{ songs_formset.management_form }}
                 <!-- Button for Editing Album -->
                 <button class="edit-album" type="submit">Edit Album</button>
             </div>
-        </fieldset>
-    </form>
-</section>
-
-<section class="editPage">
-    <form action = "{% url 'album-edit' id=album.id %}" method = "post">
+        </fieldset>.
         <fieldset>
             <h2>Songs in the album</h2>
             <div class="container">
@@ -32,15 +27,24 @@
 
                 {% csrf_token %}
                 {% for song in songs_formset %}
-                {{ song.name }}{{ song.length }}
+                    <div class="songs-formset-field">
+                        {{ song.name }}
+                    </div>
+                    <div class="songs-formset-field">
+                        {{ song.length }}
+                    </div>
+                    <div class="songs-formset-field">
+                        {{ song.DELETE }}
+                    </div>
+
                 {% endfor %}
 
-                <!-- Button for Editing Album -->
-                <button class="edit-album" type="submit">Edit Album</button>
             </div>
         </fieldset>
     </form>
 </section>
+
+
 
 
 {% endblock %}>
