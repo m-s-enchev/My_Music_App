@@ -61,7 +61,9 @@ def album_edit(request, id):
     if request.method == "POST":
         form = AlbumModelForm(request.POST, instance=album)
         songs_formset = SongsFormSet(request.POST, queryset=songs)
+        print(songs_formset)
         if form.is_valid() and songs_formset.is_valid():
+
             form.save()
             songs_formset.save()
             return redirect("homepage")
