@@ -38,8 +38,8 @@ class Album(models.Model):
 
     def songs_in_album(self):
         return self.songs_set.all()
-
-    def __str__(self):
-        return self.album_name
+    #
+    # def __str__(self):
+    #     return self.album_name
 
 
