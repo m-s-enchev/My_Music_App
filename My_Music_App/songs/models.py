@@ -8,6 +8,6 @@ from My_Music_App.album.models import Album
 
 class Songs(models.Model):
     name = models.CharField(max_length=50)
-    length = models.TimeField()
+    length = models.CharField(max_length=5)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
