@@ -26,6 +26,8 @@
                 <!-- Form for Editing Album -->
 
                 {% csrf_token %}
+                {{ songs_formset }}
+            <!--
                 {% for song in songs_formset %}
                     <div class="songs-formset-field">
                         {{ song.name }}
@@ -37,7 +39,7 @@
                         {{ song.DELETE }}
                     </div>
 
-                {% endfor %}
+                {% endfor %}  -->
 
             </div>
         </fieldset>
